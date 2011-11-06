@@ -1,5 +1,8 @@
 Revision history for Perl extension Tokenizer.
 
+0.4.3 Sun Nov  6 22:56:46 CET 2011
+	- POD docu fix (thanks to Alex Mestiashvili)
+
 0.4.2 Wed Mar 11 11:17:38 CET 2009
 	- 64bit arch compilation fix
 

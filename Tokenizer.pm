@@ -64,7 +64,7 @@ our @EXPORT = qw(
 	tokenizer_destroy	
 );
 
-our $VERSION = '0.4.2';
+our $VERSION = '0.4.3';
 
 sub AUTOLOAD {
     # This AUTOLOAD is used to 'autoload' constants from the constant()
@@ -173,7 +173,11 @@ to import all constants & methods.
 
 =over 17
 
+=back
+
 =head2 I<TOKEN TYPES> Token types that tokenizer returns.
+
+=over
 
 =item	B<TOK_UNDEF>
 
@@ -219,8 +223,11 @@ End of File
 
 Error Condition (see C<ERROR_TYPES>)
 
+=back
 
 =head2 I<ERROR TYPES> Error codes that will tokenizer return if error happens.
+
+=over
 
 =item	B<NOERR>
 
@@ -242,8 +249,11 @@ Unclosed inverse quote found
 
 Failed to allocate tokenizer context (FATAL ERROR)
 
+=back
 
 =head2 I<TOKENIZER OPTIONS> Options configurable for tokenizer. They should be OR-ed when passing to tokenizer_options.
+
+=over
 
 =item	B<TOK_OPT_DEFAULT>
 
@@ -309,7 +319,6 @@ Scan current tokenizer instance, and return first token found.
 	@tok	= ($string, $type, $line, $error, $error_line)
 
 =over 10
-=over 10
 
 =item	$string		- found token string
 
@@ -321,7 +330,6 @@ Scan current tokenizer instance, and return first token found.
 
 =item	$error_line	- line number where error begins (unclosed quote position)
 
-=back
 =back
 	
 =item	B<tokenizer_exists(TOK_ID)>
