@@ -1,5 +1,11 @@
 Revision history for Perl extension Tokenizer.
 
+0.4.4 Thu Nov 10 22:50:13 CET 2011
+	- Fix CPAN #72326 bug, changed unique tokenizer identification,
+		to fix compilation warnings in XS module.
+		This seems to happen only on for some version of Perl
+		on some versions of BSD-like OSes - no idea why.
+
 0.4.3 Sun Nov  6 22:56:46 CET 2011
 	- POD docu fix (thanks to Alex Mestiashvili)
 

@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               Text-Tokenizer
-version:            0.4.3
+version:            0.4.4
 abstract:           Perl extension for tokenizing text(config) files
 author:
     - Sam <_samkob_(a)_gmail_._com_>

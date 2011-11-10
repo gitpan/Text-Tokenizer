@@ -2985,6 +2985,7 @@ static tok_line  curr_line	= 1;			/*line position*/
 static tok_line  error_line	= 0;			/*error line number*/
 static tok_error error_type	= NOERR;		/*only used on TOK_ERROR*/
 static int 	 token_opts	= TOK_OPT_DEFAULT;	/*tokenizer options*/
+static tok_id	 tokid_counter	= 1;			/*tokenizer counter*/
 
 /*identificators (flex always matches biggest chunk it can)*/
 /*options*/
@@ -2995,7 +2996,7 @@ static int 	 token_opts	= TOK_OPT_DEFAULT;	/*tokenizer options*/
 
 
 
-#line 2999 "lex.tokenizer_yy.c"
+#line 3000 "lex.tokenizer_yy.c"
 
 #define INITIAL 0
 #define d_quote 1
@@ -3159,7 +3160,7 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 148 "tokenizer.c.flex"
+#line 149 "tokenizer.c.flex"
 
 	/* -- prepare text buffer -- */
 	if(!BUFFER_READY(buffer))
@@ -3167,7 +3168,7 @@ YY_DECL
 	BUFFER_CLEAR(buffer);
 
 	/* -- double quoted text -- */
-#line 3171 "lex.tokenizer_yy.c"
+#line 3172 "lex.tokenizer_yy.c"
 
 	if ( !(yy_init) )
 		{
@@ -3225,71 +3226,71 @@ do_action:	/* This label is used only to access EOF actions. */
 	{ /* beginning of action switch */
 case 1:
 YY_RULE_SETUP
-#line 155 "tokenizer.c.flex"
+#line 156 "tokenizer.c.flex"
 TOKEN_BEGIN(d_quote, buffer);
 	YY_BREAK
 
 case 2:
 YY_RULE_SETUP
-#line 157 "tokenizer.c.flex"
+#line 158 "tokenizer.c.flex"
 TOKEN_RETURNS(TOK_DQUOTE);
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 158 "tokenizer.c.flex"
+#line 159 "tokenizer.c.flex"
 BUFFER_PUT(buffer, tokenizer_yytext, tokenizer_yyleng);
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 159 "tokenizer.c.flex"
+#line 160 "tokenizer.c.flex"
 BUFFER_PUT(buffer, tokenizer_yytext + (!(token_opts & TOK_OPT_NOUNESCAPE) ? 1 : 0), (!(token_opts & TOK_OPT_NOUNESCAPE) ? 1 : tokenizer_yyleng ));
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 160 "tokenizer.c.flex"
+#line 161 "tokenizer.c.flex"
 BUFFER_PUT(buffer, tokenizer_yytext + ((token_opts & TOK_OPT_UNESCAPE_CHARS) ? 1 : 0), ((token_opts & TOK_OPT_UNESCAPE_CHARS) ? 1 : tokenizer_yyleng ));
 	YY_BREAK
 case YY_STATE_EOF(d_quote):
-#line 161 "tokenizer.c.flex"
+#line 162 "tokenizer.c.flex"
 TOKEN_ERROR(UNCLOSED_DQUOTE);
 	YY_BREAK
 
 /* -- simple quoted text -- */
 case 6:
 YY_RULE_SETUP
-#line 165 "tokenizer.c.flex"
+#line 166 "tokenizer.c.flex"
 TOKEN_BEGIN(s_quote, buffer);
 	YY_BREAK
 
 case 7:
 YY_RULE_SETUP
-#line 167 "tokenizer.c.flex"
+#line 168 "tokenizer.c.flex"
 TOKEN_RETURNS(TOK_SQUOTE);
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 168 "tokenizer.c.flex"
+#line 169 "tokenizer.c.flex"
 BUFFER_PUT(buffer, tokenizer_yytext, tokenizer_yyleng);
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 169 "tokenizer.c.flex"
+#line 170 "tokenizer.c.flex"
 BUFFER_PUT(buffer, tokenizer_yytext + (!(token_opts & TOK_OPT_NOUNESCAPE) ? 1 : 0), (!(token_opts & TOK_OPT_NOUNESCAPE) ? 1 : tokenizer_yyleng ));
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 170 "tokenizer.c.flex"
+#line 171 "tokenizer.c.flex"
 BUFFER_PUT(buffer, tokenizer_yytext, tokenizer_yyleng);
 	YY_BREAK
 case YY_STATE_EOF(s_quote):
-#line 171 "tokenizer.c.flex"
+#line 172 "tokenizer.c.flex"
 TOKEN_ERROR(UNCLOSED_SQUOTE);
 	YY_BREAK
 
 /* -- inverse quoted text -- */
 case 11:
 YY_RULE_SETUP
-#line 175 "tokenizer.c.flex"
+#line 176 "tokenizer.c.flex"
 {  if(!(token_opts & TOK_OPT_NO_IQUOTE))
 	   {	TOKEN_BEGIN(i_quote, buffer);		}
 	   else
@@ -3298,17 +3299,17 @@ YY_RULE_SETUP
 
 case 12:
 YY_RULE_SETUP
-#line 180 "tokenizer.c.flex"
+#line 181 "tokenizer.c.flex"
 TOKEN_RETURNS(TOK_IQUOTE);
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 181 "tokenizer.c.flex"
+#line 182 "tokenizer.c.flex"
 BUFFER_PUT(buffer, tokenizer_yytext, tokenizer_yyleng);
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 182 "tokenizer.c.flex"
+#line 183 "tokenizer.c.flex"
 {	if(token_opts & TOK_OPT_SIQUOTE)
 				{						TOKEN_RETURNS(TOK_SIQUOTE);	}
 				else
@@ -3316,16 +3317,16 @@ YY_RULE_SETUP
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 186 "tokenizer.c.flex"
+#line 187 "tokenizer.c.flex"
 BUFFER_PUT(buffer, tokenizer_yytext + (!(token_opts & TOK_OPT_NOUNESCAPE) ? 1 : 0), (!(token_opts & TOK_OPT_NOUNESCAPE) ? 1 : tokenizer_yyleng ));
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 187 "tokenizer.c.flex"
+#line 188 "tokenizer.c.flex"
 BUFFER_PUT(buffer, tokenizer_yytext, tokenizer_yyleng);
 	YY_BREAK
 case YY_STATE_EOF(i_quote):
-#line 188 "tokenizer.c.flex"
+#line 189 "tokenizer.c.flex"
 TOKEN_ERROR(UNCLOSED_IQUOTE);
 	YY_BREAK
 
@@ -3334,20 +3335,20 @@ TOKEN_ERROR(UNCLOSED_IQUOTE);
 case 17:
 /* rule 17 can match eol */
 YY_RULE_SETUP
-#line 193 "tokenizer.c.flex"
+#line 194 "tokenizer.c.flex"
 LINE_INC();	if(!(token_opts & TOK_OPT_UNESCAPE_LINES))	BUFFER_PUT(buffer, tokenizer_yytext, tokenizer_yyleng);
 	YY_BREAK
 case 18:
 /* rule 18 can match eol */
 YY_RULE_SETUP
-#line 194 "tokenizer.c.flex"
+#line 195 "tokenizer.c.flex"
 LINE_INC();	BUFFER_PUT(buffer, tokenizer_yytext, 1);
 	YY_BREAK
 
 /* -- BASH comment -- */
 case 19:
 YY_RULE_SETUP
-#line 198 "tokenizer.c.flex"
+#line 199 "tokenizer.c.flex"
 {  if(!(token_opts & TOK_OPT_NO_BASH_COMMENT))
 	   {	TOKEN_BEGIN(bash_comment, buffer);	}
 	   else
@@ -3356,13 +3357,13 @@ YY_RULE_SETUP
 
 case 20:
 YY_RULE_SETUP
-#line 203 "tokenizer.c.flex"
+#line 204 "tokenizer.c.flex"
 BUFFER_PUT(buffer, tokenizer_yytext, tokenizer_yyleng);
 	YY_BREAK
 case 21:
 /* rule 21 can match eol */
 YY_RULE_SETUP
-#line 204 "tokenizer.c.flex"
+#line 205 "tokenizer.c.flex"
 { LINE_INC();	BUFFER_PUT(buffer, tokenizer_yytext, tokenizer_yyleng);
 					if(token_opts & TOK_OPT_PASS_COMMENT)
 					{					TOKEN_RETURNS(TOK_BASH_COMMENT);	}
@@ -3373,7 +3374,7 @@ YY_RULE_SETUP
 /* -- C comment -- */
 case 22:
 YY_RULE_SETUP
-#line 212 "tokenizer.c.flex"
+#line 213 "tokenizer.c.flex"
 {  if(token_opts & TOK_OPT_CC_COMMENT)
 	   {	TOKEN_BEGIN(c_comment, buffer);		}
 	   else
@@ -3383,12 +3384,12 @@ YY_RULE_SETUP
 case 23:
 /* rule 23 can match eol */
 YY_RULE_SETUP
-#line 217 "tokenizer.c.flex"
+#line 218 "tokenizer.c.flex"
 LINE_INC();	BUFFER_PUT(buffer, tokenizer_yytext, tokenizer_yyleng);
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 218 "tokenizer.c.flex"
+#line 219 "tokenizer.c.flex"
 {  if(token_opts & TOK_OPT_PASS_COMMENT)
 					   {					TOKEN_RETURNS(TOK_C_COMMENT);	}
 					   else
@@ -3396,18 +3397,18 @@ YY_RULE_SETUP
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 222 "tokenizer.c.flex"
+#line 223 "tokenizer.c.flex"
 BUFFER_PUT(buffer, tokenizer_yytext, tokenizer_yyleng);
 	YY_BREAK
 case YY_STATE_EOF(c_comment):
-#line 223 "tokenizer.c.flex"
+#line 224 "tokenizer.c.flex"
 TOKEN_ERROR(UNCLOSED_C_COMMENT);
 	YY_BREAK
 
 /* -- C++ comment -- */
 case 26:
 YY_RULE_SETUP
-#line 227 "tokenizer.c.flex"
+#line 228 "tokenizer.c.flex"
 {  if(token_opts & TOK_OPT_C_COMMENT)
 	   {	TOKEN_BEGIN(cc_comment, buffer);	}
 	   else
@@ -3416,13 +3417,13 @@ YY_RULE_SETUP
 
 case 27:
 YY_RULE_SETUP
-#line 232 "tokenizer.c.flex"
+#line 233 "tokenizer.c.flex"
 BUFFER_PUT(buffer, tokenizer_yytext, tokenizer_yyleng);
 	YY_BREAK
 case 28:
 /* rule 28 can match eol */
 YY_RULE_SETUP
-#line 233 "tokenizer.c.flex"
+#line 234 "tokenizer.c.flex"
 { LINE_INC();	BUFFER_PUT(buffer, tokenizer_yytext, tokenizer_yyleng);
 					if(token_opts & TOK_OPT_PASS_COMMENT)
 					{					TOKEN_RETURNS(TOK_CC_COMMENT);	}
@@ -3435,30 +3436,30 @@ YY_RULE_SETUP
 case 29:
 /* rule 29 can match eol */
 YY_RULE_SETUP
-#line 242 "tokenizer.c.flex"
+#line 243 "tokenizer.c.flex"
 LINE_INC();	BUFFER_PUT(buffer, tokenizer_yytext, tokenizer_yyleng);	TOKEN_RETURN(TOK_EOL);
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 243 "tokenizer.c.flex"
+#line 244 "tokenizer.c.flex"
 BUFFER_PUT(buffer, tokenizer_yytext, tokenizer_yyleng);	TOKEN_RETURN(TOK_TEXT);
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 244 "tokenizer.c.flex"
+#line 245 "tokenizer.c.flex"
 BUFFER_PUT(buffer, tokenizer_yytext, tokenizer_yyleng);	TOKEN_RETURN(TOK_BLANK);
 	YY_BREAK
 case YY_STATE_EOF(INITIAL):
-#line 245 "tokenizer.c.flex"
+#line 246 "tokenizer.c.flex"
 BUFFER_PUT(buffer, tokenizer_yytext, tokenizer_yyleng);	TOKEN_RETURN(TOK_EOF);
 	YY_BREAK
 
 case 32:
 YY_RULE_SETUP
-#line 248 "tokenizer.c.flex"
+#line 249 "tokenizer.c.flex"
 ECHO;
 	YY_BREAK
-#line 3462 "lex.tokenizer_yy.c"
+#line 3463 "lex.tokenizer_yy.c"
 			case YY_STATE_EOF(bash_comment):
 			case YY_STATE_EOF(cc_comment):
 				yyterminate();
@@ -3989,9 +3990,19 @@ static void tokenizer_yy_load_buffer_state  (void)
 	tokenizer_yyfree((void *) b  );
 }
 
-#ifndef __cplusplus
+#ifndef _UNISTD_H /* assume unistd.h has isatty() for us */
+#ifdef __cplusplus
+extern "C" {
+#endif
+#ifdef __THROW /* this is a gnuism */
+extern int isatty (int ) __THROW;
+#else
 extern int isatty (int );
-#endif /* __cplusplus */
+#endif
+#ifdef __cplusplus
+}
+#endif
+#endif
     
 /* Initializes or reinitializes a buffer.
  * This function is sometimes called more than once on the same buffer,
@@ -4437,7 +4448,7 @@ void tokenizer_yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 248 "tokenizer.c.flex"
+#line 249 "tokenizer.c.flex"
 
 
 
@@ -4461,8 +4472,9 @@ tok_bool				tok_ready	= 0;
 #define TOKEN_SAFE()			if(!TOKEN_READY())	return 0;
 #define TOKEN_IS_SAFE()			(tok_ready)
 #define TOKEN_BUFFER_CREATE(buf)	buf = (TOKEN_BUFFER *) malloc(sizeof(TOKEN_BUFFER)); \
-		if(buf != NULL) {	buf->line = 1; \
-					buf->id =  buf->state = NULL; \
+		if(buf != NULL) {	buf->line = 1; 	\
+					buf->id = 0;	\
+					buf->state = NULL; \
 					buf->child = NULL;	}
 
 
@@ -4497,12 +4509,12 @@ static tok_id tokenizer_init(FILE *f)
     if(f != NULL)
 	tokenizer_yyin	= f;				/*init from file*/
     else
-	return NULL;				/*bad input*/
+	return 0;				/*bad input*/
 
     /*create initial token buffer (needs to be always presented)*/
     TOKEN_BUFFER_CREATE(tokb);
     tokb_curr	= tokb;
-    tokb->id	= f;
+    tokb->id	= tokid_counter++;
     tokb->state	= YY_CURRENT_BUFFER;		/*set state from current*/
     TOKEN_READY_SET();				/*go be ready*/
     return TOKEN_ID(tokb->id);
@@ -4521,12 +4533,12 @@ tok_id tokenizer_new(FILE *f)
     while(tb != NULL && tb->child != NULL)	/*else we will look for end of tokenizers list*/
 	tb	= tb->child;
     TOKEN_BUFFER_CREATE(tb->child);		/*create new token buffer*/
-    if(tb->child == NULL)
+    if(tb->child == 0)
 	return 0;				/*something got wrong*/
     tb		= tb->child;			/*else setup structure*/
-    tb->id	= TOKEN_ID(f);
+    tb->id	= tokid_counter++;
     tb->state	= tokenizer_yy_create_buffer(f,YY_BUF_SIZE);
-    tokb_curr		= tb;			/*setup current tokb*/
+    tokb_curr	= tb;				/*setup current tokb*/
     return TOKEN_ID(tb->id);
 }
 
@@ -4538,15 +4550,15 @@ tok_id tokenizer_new_strbuf(const char *buf, unsigned int len)
     TOKEN_BUFFER *tb	= tokb;
 
     if(tb == NULL)				/*(mad hacker) again auto-init*/
-	return NULL;
-    
+	return 0;
+ 
     while(tb != NULL && tb->child != NULL)
 	tb	= tb->child;
     TOKEN_BUFFER_CREATE(tb->child);
     if(tb->child == NULL)
    	return 0;				/*something got wrong*/
-    tb	= tb->child;
-    tb->id	= TOKEN_ID(buf);
+    tb		= tb->child;
+    tb->id	= tokid_counter++;
     tb->state	= tokenizer_yy_scan_bytes(buf,len);	/*YY_END_OF_BUFFER_CHAR*/
     tokb_curr		= tb;			/*setup current tokb*/
     return TOKEN_ID(tb->id);

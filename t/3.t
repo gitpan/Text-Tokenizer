@@ -1,7 +1,7 @@
 #copy-mode test with c/c++ comments
 #
 
-use Test::More tests => 10;
+use Test::More tests => 12;
 BEGIN { use_ok('Text::Tokenizer') };
 
 my($tokid);
@@ -12,6 +12,8 @@ ok(($tokid = tokenizer_new(F)), 'Tokenizer create');
 ok(tokenizer_exists($tokid), 'Tokenizer exists');
 ok(tokenizer_switch($tokid), 'Tokenizer switch');
 ok(tokenizer_options(TOK_OPT_NOUNESCAPE|TOK_OPT_PASS_COMMENT|TOK_OPT_C_COMMENT|TOK_OPT_CC_COMMENT), 'Tokenizer options');
+ok(($tokid = tokenizer_new(F)), 'Tokenizer create 2');
+ok(tokenizer_switch($tokid), 'Tokenizer switch');
 
 #get size of file via tokenizer
 my ($str, $tok, $lin, $err, $errlin, $file_len);
