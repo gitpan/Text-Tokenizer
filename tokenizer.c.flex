@@ -15,12 +15,11 @@
  *		tokens storage						   *
  *	- bad call (segfault) prevention				   *
  *									   *
- *   Copyright (C) 2001-2009 by Samuel Behan 				   *
- *   samkob_(a)_gmail_._com			                           *
+ *   Copyright (C) 2001-2011 by Samuel Behan (http://devel.dob.sk)         *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
+ *   the Free Software Foundation; either version 3 of the License, or     *
  *   (at your option) any later version.                                   *
  *                                                                         *
  *   This program is distributed in the hope that it will be useful,       *
@@ -497,13 +496,13 @@ int main()
 {
 	FILE	*f,*ff;
 	TOKEN_STRUCT	ts;
-	
+
 	f	= fopen("input.txt", "r");
-//	ff	= fopen("input2.txt", "r");
+/*	ff	= fopen("input2.txt", "r");	*/
 	tokenizer_opts(TOK_OPT_NOUNESCAPE|TOK_OPT_SIQUOTE);
 	tokenizer_new(f);
-//	tokenizer_new(ff);
-//	tokenizer_switch(TOKEN_ID(ff));
+/*	tokenizer_new(ff);			*/
+/*	tokenizer_switch(TOKEN_ID(ff));		*/
 	do {
 		tokenizer_scan(&ts);
 		if(ts.token == TOK_DQUOTE)

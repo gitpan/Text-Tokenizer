@@ -1,18 +1,19 @@
 #copy-mode test with c/c++ comments
 #
 
+use strict;
 use Test::More tests => 12;
 BEGIN { use_ok('Text::Tokenizer') };
 
-my($tokid);
+my($tokid, $fh);
 
 #create tokenizer
-ok(open(F, $0),	'open() call');
-ok(($tokid = tokenizer_new(F)), 'Tokenizer create');
+ok(open($fh, $0),	'open() call');
+ok(($tokid = tokenizer_new($fh)), 'Tokenizer create');
 ok(tokenizer_exists($tokid), 'Tokenizer exists');
 ok(tokenizer_switch($tokid), 'Tokenizer switch');
 ok(tokenizer_options(TOK_OPT_NOUNESCAPE|TOK_OPT_PASS_COMMENT|TOK_OPT_C_COMMENT|TOK_OPT_CC_COMMENT), 'Tokenizer options');
-ok(($tokid = tokenizer_new(F)), 'Tokenizer create 2');
+ok(($tokid = tokenizer_new($fh)), 'Tokenizer create 2');
 ok(tokenizer_switch($tokid), 'Tokenizer switch');
 
 #get size of file via tokenizer
@@ -48,7 +49,7 @@ ok(tokenizer_delete($tokid),	'Tokenizer delete');
 
 #stat file size
 my (@sti);
-@sti	= stat(F);
+@sti	= stat($fh);
 ok( defined($sti[7]), 'stat() call');
 ok( $file_len == $sti[7] , 'Size compare' );
 
@@ -61,4 +62,3 @@ SOME TEST CASES:
 ad
 asd
 */ /* adasd */
-		
