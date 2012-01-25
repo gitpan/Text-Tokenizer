@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               Text-Tokenizer
-version:            0.4.5
+version:            0.4.6
 abstract:           Perl extension for tokenizing text(config) files
 author:
     - Samuel Behan (http://devel.dob.sk)
